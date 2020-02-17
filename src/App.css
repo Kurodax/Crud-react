@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+/*Form CSS*/
+.form{
+  width: auto;
+  padding: 0%;
+}
+.field{
+  width: 100%;
+  margin: 5px 1;
+  display: unset;
+};
