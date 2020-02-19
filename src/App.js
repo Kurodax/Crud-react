@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { Link } from 'react-router-dom';
 
 function App() {
   const [textName, setTextName] = React.useState("")
@@ -13,15 +14,9 @@ function App() {
   const [idToggle, setIdToggle] = React.useState(0)
   const handleSubmit = (event) => {
     event.preventDefault();
-    // UmArray.push(textName)
     setOneArray([...OneArray, { id: Math.floor(Math.random() * 999), name: textName }])
   }
   const handleDestroy = (id) => {
-    // const index = UmArray.indexOf(items)
-    // if (index !== -1) {
-    //   const a = UmArray.splice(index, 1);
-    //   setUmArray(a)
-    // }
     setOneArray(OneArray.filter(element => element.id !== id))
   }
   const handleUp = (id) => {
@@ -39,9 +34,9 @@ function App() {
       return item;
     });
     setOneArray(a)
-
-    // setOneArray([...OneArray, id, update: textName ])
   }
+
+
   return (
     <div className="App">
       <form class="form" onSubmit={handleSubmit} autoComplete="off">
@@ -52,7 +47,7 @@ function App() {
             // console.log(event.target.value)
             setTextName(event.target.value)
           }} ></input>
-          <button type="submit" >Adicionar Item</button>
+          <button type="submit">Adicionar Item</button>
         </div>
       </form>
       <h2>
@@ -63,6 +58,7 @@ function App() {
                 {items.id}-{items.name}
                 <button type="button" onClick={() => handleDestroy(items.id)}>Apaga Item</button>
                 <button type="button" onClick={() => handleUp(items.id)}>Alterar Item</button>
+                <Link to={'/profile/'+items.id+items.name}><button> IR para profile </button></Link>
                 <br></br>
                 <input type="text" hidden={toggleInputAlter && items.id === idToggle ? false : true} onChange={(event) =>{
                   setTextName(event.target.value)
@@ -74,8 +70,9 @@ function App() {
           })
         }
       </h2>
+      <Link to="/sobre"><button> Ir para a página sobre </button></Link>
     </div>
-
+    
   );
 };
 
